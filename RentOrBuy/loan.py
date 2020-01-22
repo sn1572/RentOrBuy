@@ -44,4 +44,5 @@ class PropertyTax(interface.ExpenseGenerator):
 
     def __call__(self, date):
         if date in self.dueDates:
-            return(rob.propertyTaxes[self.ownedProperty.zipcode][date.year])
+            return(rob.propertyTaxes[self.property.zipcode][date.year])
+        return(0)
