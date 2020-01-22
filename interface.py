@@ -24,7 +24,7 @@ Class ExpenseGenerator(abc.ABC):
     pass
 
 
-Class ComputeLoan(abc.ABC):
+Class Simulator(abc.ABC):
   '''
   To actually run a simulation, we want to pass a
   collection of ExpenseGenerator functions as args
@@ -36,4 +36,18 @@ Class ComputeLoan(abc.ABC):
 
   @abc.abstractmethod
   __init__(self, *args):
+    pass
+
+
+Class RecordKeeper(abc.ABC):
+  '''
+  This one stores the value of things like
+  home equity, loan principal, or stock holdings.
+  Must implement __call__ for getting the value
+  of the record, and further child classes will
+  be used to identify the kind of record.
+  '''
+
+  @abc.abstractmethod
+  __call__(self):
     pass
