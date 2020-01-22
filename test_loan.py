@@ -11,9 +11,11 @@ import datetime
 from numpy import testing
 
 
-def test_global_imports():
-    _ = rob.propertyTaxes
-    assert _ != None
+class TestGlobalImports:
+
+    def test_propertyTaxes_import():
+        taxes = rob.propertyTaxes
+        assert type(taxes) == dict
 
 
 class TestPropertyTax:
