@@ -22,3 +22,18 @@ Class ExpenseGenerator(abc.ABC):
   @abc.abstractmethod
   __call__(self, day):
     pass
+
+
+Class ComputeLoan(abc.ABC):
+  '''
+  To actually run a simulation, we want to pass a
+  collection of ExpenseGenerator functions as args
+  and then let the sim call them every day and 
+  examine the output. A very general way of doing
+  things that lets one easily include more and more
+  detail by just including more and more expenses.
+  '''
+
+  @abc.abstractmethod
+  __init__(self, *args):
+    pass
