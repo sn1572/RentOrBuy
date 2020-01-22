@@ -11,3 +11,7 @@ Simulator class objects will receive an unsorted list of callables of various ty
 The simulator steps through days starting with some arbitrary start date.
 On each day, the simulator calls each member of its args list to determine what
 payments need to be made on that day, what records need to be updated, and so on.
+
+Some classes will have other classes as children (not as child classes, mind you).
+For example, an OwnedProperty has RecordKeeper as a parent class, and each
+instance of a PropertyTax object will point to an OwnedProperty object.
