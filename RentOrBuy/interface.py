@@ -24,6 +24,13 @@ class ExpenseGenerator(abc.ABC):
         pass
 
 
+class IncomeGenerator(abc.ABC):
+
+    @abc.abstractmethod
+    def __call__(self, day):
+        pass
+
+
 class RecordKeeper(abc.ABC):
     '''
     This one stores the value of things like
@@ -32,10 +39,7 @@ class RecordKeeper(abc.ABC):
     of the record, and further child classes will
     be used to identify the kind of record.
     '''
-    
-    @abc.abstractmethod
-    def __call__(self):
-        pass
+    pass
 
 
 class MonthlyLoan(RecordKeeper):
@@ -48,7 +52,7 @@ class MonthlyLoan(RecordKeeper):
     pass
 
 
-class OwnedProperty(abc.ABC):
+class OwnedProperty(RecordKeeper):
     '''
     Class for properties that are owned.
     Will be the child of potentially many
@@ -59,14 +63,6 @@ class OwnedProperty(abc.ABC):
 
     @abc.abstractmethod
     def __init__(self, zipCode, purchaseDate):
-        pass
-
-    @abc.abstractmethod
-    def zipCode(self):
-        pass
-
-    @abc.abstractmethod
-    def purchaseDate(self):
         pass
 
 
