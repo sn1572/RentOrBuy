@@ -7,6 +7,7 @@ Created on Sat Aug  4 10:54:14 2018
 
 import numpy as np
 
+
 class time_func:
 
     def __init__(self, function=None):
@@ -21,6 +22,7 @@ class time_func:
         self.time += 1
         return(val)
 
+
 class const_rate:
 
     def __init__(self, rate):
@@ -28,7 +30,7 @@ class const_rate:
 
     def iterate(self, time):
         return(self.rate)
-        
+
 
 def loan_any_length(loan_amt, down_payment, payment, interest_rate, rent, housing_market_growth, investment_growth):
     capital_gains = .15; property_tax = .0078
@@ -61,7 +63,8 @@ def loan_any_length(loan_amt, down_payment, payment, interest_rate, rent, housin
         print("Conclusion: home loan is a better deal.")
     else:
         print("Renting is a better deal.")
-        
+
+
 def bank_loan_any_length(loan_amt, down_payment, payment, interest_rate, rent, housing_market_growth, investment_growth, term):
     #capital_gains = .15; property_tax = .0078
     capital_gains = .15; property_tax = 0
@@ -99,14 +102,16 @@ def bank_loan_any_length(loan_amt, down_payment, payment, interest_rate, rent, h
         print("Conclusion: home loan is a better deal.")
     else:
         print("Renting is a better deal.")
-    
-loan_amt = 200000
-down_payment = 50000
-payment = time_func(const_rate(2000))
-interest_rate = time_func(const_rate(.0425/12))
-housing_market_growth = time_func(const_rate(.054/12))
-investment_growth = time_func(const_rate(.054/12))
-rent = time_func(const_rate(1250))
 
-print(bank_loan_any_length(loan_amt, down_payment, payment, interest_rate, rent, housing_market_growth, investment_growth, term=15))
-#print(loan_any_length(loan_amt, down_payment, payment, interest_rate, rent, housing_market_growth, investment_growth))
+
+if __name__ == '__main__':
+    loan_amt = 200000
+    down_payment = 50000
+    payment = time_func(const_rate(2000))
+    interest_rate = time_func(const_rate(.0425/12))
+    housing_market_growth = time_func(const_rate(.054/12))
+    investment_growth = time_func(const_rate(.054/12))
+    rent = time_func(const_rate(1250))
+
+    print(bank_loan_any_length(loan_amt, down_payment, payment, interest_rate, rent, housing_market_growth, investment_growth, term=15))
+    #print(loan_any_length(loan_amt, down_payment, payment, interest_rate, rent, housing_market_growth, investment_growth))
