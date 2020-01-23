@@ -26,9 +26,10 @@ class OwnedProperty(interface.OwnedProperty):
         self.purchaseDate = purchaseDate
 
 
-class PropertyTax(interface.ExpenseGenerator):
+class HistoricalPropertyTax(interface.ExpenseGenerator):
     '''
-    A concrete implementation of a property tax.
+    A concrete implementation of a property tax, 
+    meant for pasing historical data.
     '''
 
     def __init__(self, dueDates, ownedProperty):
@@ -45,4 +46,40 @@ class PropertyTax(interface.ExpenseGenerator):
     def __call__(self, date):
         if date in self.dueDates:
             return(rob.propertyTaxes[self.property.zipcode][date.year])
+        return(0)
+
+
+class MonthlyLoan(interface.MonthlyLoan):
+    '''
+    Basic record keeper holding a monthly loan
+    '''
+
+    def __init__(self, principle):
+        msg = 'principle must be an integer'
+        assert type(principle) == int, msg
+        self.principle = principle
+
+
+class Interest(interface.ExpenseGenerator):
+    '''
+    Compounds interest on a monthly loan.
+    '''
+
+    def __init__(self, dueDates, rate, monthlyLoan):
+        dateMsg = 'dueDates must be a list of datetime.date objects.'
+        assert type(dueDates) == list, dateMsg
+        for date in dueDates:
+            assert type(date) == datetime.date, dateMsg
+        rateMsg = 'rate must be a float.'
+        assert type(rate) == float, rateMsg
+        loanMsg = 'monthlyLoan must be a MonthlyLoan object.'
+        assert type(monthlyLoan) == rob.MonthlyLoan, loanMsg
+
+        self.dueDates = dueDates
+        self.rate = rate
+        self.monthlyLoan = monthlyLoan
+
+    def __call__(self, date):
+        if date in self.dueDates:
+            return(self.rate*self.monthlyLoan.principle)
         return(0)
